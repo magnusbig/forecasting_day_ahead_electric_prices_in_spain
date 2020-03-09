@@ -8,18 +8,18 @@ Details the technical approach taken for the project including:
   - Evaluation Metrics
 - Summary Metrics
 
-**Problem Statement**
+## Problem Statement
 
 Predict electricity prices in Spain for each hour of the upcoming day more accurately than estimates provided by the Spanish transmission agent and operator. 
 
 Use information available during the 2pm-3pm window the previous day during which generators in Spain submit their bids. 
 
-**Cleaning & Transforming Data**
+## Cleaning & Transforming Data
 
-*Cleaning*:
+**Cleaning**:<br>
 Minimal cleaning of data was required with a maximum of 19 missing data points out of 35064 for any variable used for modeling. The method used to fill any missing data was *linear interpolation*. This method was chosen due to the variable, time series nature of the data and the gaps in data being small. Thus, linear interpolation allowed us to connect the previous non-missing data point and the next non-missing data point. While this is not a perfect method and likely understates the variance of the underlying data it seemed to be superior to other potential methods and overall should not have a large effect on our results since there was very little missing data.
 
-*Transforming*:
+**Transforming**:<br>
 The only transformation of data performed was to get all of our X and y variables onto the same row of the data frame in order to facilitate modeling. This was accomplished using the *shift* method and resulted in each day having a single row with the following data points.
 - The actual, hourly electric prices for the next day (our target)
 - The projected, hourly total load and wind generation for the next day (information available from the operator)
@@ -31,7 +31,7 @@ These transformations also got rid of all of our detailed information on generat
 
 Additionally, given time constraints, weather projections have not been included in the analysis as of yet, but this is a near-term area of further iteration and improvement.
 
-**Modeling**
+## Modeling
 
-*Baseline*
+**Baseline**:<br>
 The baseline against which we compared our models was day ahead prices provided in the original data set.
