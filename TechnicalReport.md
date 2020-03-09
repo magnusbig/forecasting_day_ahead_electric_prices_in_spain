@@ -33,5 +33,5 @@ Additionally, given time constraints, weather projections have not been included
 
 ## Modeling
 
-**Baseline**:<br>
+**Baseline & Evaluation Metrics**:<br>
 The baseline against which we compared our models was day ahead prices provided in the original data set.
