@@ -2,6 +2,7 @@
 
 ## Contents
 - [Problem Statement](#Problem-Statement)
+- [Repo Structure](#Repo-Structure)
 - [Executive Summary](#Executive-Summary)
   - Data
   - EDA & Cleaning
@@ -20,6 +21,25 @@
 Predict electricity prices in Spain for each hour of the upcoming day more accurately than estimates provided by the Spanish transmission agent and operator. 
 
 Use information available during the 2pm-3pm window the previous day during which generators in Spain submit their bids.
+
+## Repo Structure
+- [Code](./Code)
+  - Jupyter Notebooks use the following naming conventions
+    - 0x_xxx EDA
+    - 1x_xxx Combining results of EDA and feature engineering
+    - 2x_xxx Modeling
+    - 3x_xxx Evaluating models
+    - 4x_xxx In depth look at production model
+  - [Models](./Code/Models) contains saved versions of models
+- [Data](./Data) 
+  - [energy-consumption-generation-prices-and-weather](./Data/energy-consumption-generation-prices-and-weather) contains data from kaggle
+  - [Crude Oil](./Data/Crude-Oil) contains scraped oil price data
+  - [intermediary](./Data/intermediary) contains csv's created as part of EDA process
+  - [Analysis](./Data/Analysis) contains csv's used for analysis and created post EDA
+- [Research](./Research)
+  - Contains relevant accademic papers
+- [Visuals](./Visuals)
+  - Contains relevant visuals created during analysis and found on the web
 
 ## Executive Sumary
 
