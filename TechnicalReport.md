@@ -1,12 +1,24 @@
 # Technical Report
 
 Details the technical approach taken for the project including:
-- Cleaning & Transforming Data
-- Modeling
+- [Problem Statement](#Problem-Statement)
+- [Cleaning & Transforming Data](#Cleaning-&-Transforming-Data)
+  - Data Sources & Summary
+  - Cleaning
+  - Transforming
+- [Modeling](#Modeling)
+  - Assumptions
+  - Baseline
   - Model Types
   - Tuning
   - Evaluation Metrics
-- Summary Metrics
+- [Summary Metrics](#Summary-Metrics)
+  - Evaluation Statistics
+  - Predictions by Hour
+- [Production Model](#Production-Model)
+  - Model Discussion
+  - Performance
+- [Future Work](#Future-Work)
 
 ## Problem Statement
 
@@ -16,11 +28,18 @@ Use information available during the 2pm-3pm window the previous day during whic
 
 ## Cleaning & Transforming Data
 
+**Data Sources & Summary**
+The primary data set for this project was provide on [kaggle](https://www.kaggle.com/nicholasjhana/energy-consumption-generation-prices-and-weather) by Nicholas Jhana and contains 29 columns of electricity price & generation data for all of Spain for every hour from January 1, 2014 to December 31, 2018 (35064 unique hours of data). 
+
+Additionally Nicholas provided actual weather data for the same time period for the 5 largest cities in Spain, which was not included due to it being actual rather than forecasted data. However, I hope to include either that data or source weather predictions for future iterations.
+
+The final data included in the is daily crude oil prices in euros, scraped from [exchangerates.org.uk](https://www.exchangerates.org.uk/commodities/OIL-EUR-history.html). This data was gathered due to supplement the generation, load and price data as fuel burning sources are often the [price setters](https://www.businessjuice.co.uk/energy-guides/what-drives-the-price-of-electricity/) in electric markets.
+
 **Cleaning**:<br>
 Minimal cleaning of data was required with a maximum of 19 missing data points out of 35064 for any variable used for modeling. The method used to fill any missing data was *linear interpolation*. This method was chosen due to the variable, time series nature of the data and the gaps in data being small. Thus, linear interpolation allowed us to connect the previous non-missing data point and the next non-missing data point. While this is not a perfect method and likely understates the variance of the underlying data it seemed to be superior to other potential methods and overall should not have a large effect on our results since there was very little missing data.
 
 **Transforming**:<br>
-The only transformation of data performed was to get all of our X and y variables onto the same row of the data frame in order to facilitate modeling. This was accomplished using the *shift* method and resulted in each day having a single row with the following data points.
+The only transformation of data performed was to get all of our X and y variables onto the same row of the data frame in order to facilitate modeling. This was accomplished using the *shift* method and resulted in each day having a single row with the following data points:
 - The actual, hourly electric prices for the next day (our target)
 - The projected, hourly total load and wind generation for the next day (information available from the operator)
 - The actual, hourly electric prices from the begining of the previous day up to and including the 2pm-3pm time slot (known previous prices)
@@ -34,7 +53,7 @@ Additionally, given time constraints, weather projections have not been included
 ## Modeling
 
 **Baseline & Evaluation Metrics**:<br>
-The baseline against which we compared our models was day ahead prices provided in the original data set. These prices were not particularly accurate with a correlation of 0.73 with the actual prices and the following scores on the 2 metrics we used for evaluation:
+The baseline against which we compared our models was day ahead prices provided in the original data set. These prices were not particularly accurate, generally underestimating the actual price, with a correlation of 0.73 with the actual prices and the following scores on the 2 metrics we used for evaluation:
 - RMSE: €13.25
 - R-Squared: 0.13
 
@@ -86,3 +105,9 @@ Three neural networks that are common in time series analysis were fit to the da
 ## Evaluation
 
 **Summary Metrics**
+
+
+## Production Model
+
+
+## Future Work
