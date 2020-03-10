@@ -33,7 +33,7 @@ Use information available during the 2pm-3pm window the previous day during whic
   - [Models](./Code/Models) contains saved versions of models
 - [Data](./Data) 
   - [energy-consumption-generation-prices-and-weather](./Data/energy-consumption-generation-prices-and-weather) contains data from kaggle
-  - [Crude Oil](./Data/Crude-Oil) contains scraped oil price data
+  - [Crude Oil](./Data/Crude Oil) contains scraped oil price data
   - [intermediary](./Data/intermediary) contains csv's created as part of EDA process
   - [Analysis](./Data/Analysis) contains csv's used for analysis and created post EDA
 - [Research](./Research)
