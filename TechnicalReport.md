@@ -28,7 +28,7 @@ Use information available during the 2pm-3pm window the previous day during whic
 
 ## Cleaning & Transforming Data
 
-**Data Sources & Summary**
+**Data Sources & Summary**<br>
 The primary data set for this project was provide on [kaggle](https://www.kaggle.com/nicholasjhana/energy-consumption-generation-prices-and-weather) by Nicholas Jhana and contains 29 columns of electricity price & generation data for all of Spain for every hour from January 1, 2014 to December 31, 2018 (35064 unique hours of data). 
 
 Additionally Nicholas provided actual weather data for the same time period for the 5 largest cities in Spain, which was not included due to it being actual rather than forecasted data. However, I hope to include either that data or source weather predictions for future iterations.
@@ -37,6 +37,14 @@ The final data included in the is daily crude oil prices in euros, scraped from 
 
 **Cleaning**:<br>
 Minimal cleaning of data was required with a maximum of 19 missing data points out of 35064 for any variable used for modeling. The method used to fill any missing data was *linear interpolation*. This method was chosen due to the variable, time series nature of the data and the gaps in data being small. Thus, linear interpolation allowed us to connect the previous non-missing data point and the next non-missing data point. While this is not a perfect method and likely understates the variance of the underlying data it seemed to be superior to other potential methods and overall should not have a large effect on our results since there was very little missing data.
+
+Plots showing the filling of missing data using linear interpolation. Note that this shows the only gap larger than 1 hour in the data and the resulting plot is quite 'believable' apart from the solar data. Additionally there were no missing data points in our variables used currently in the model, with the exception of 2 missing days of oil prices.
+
+**Before Linear Interpolation**
+![Before Linear Interpolation](./Visuals/top_gen_missing.png)
+
+**After Linear Interpolation**
+![After Linear Interpolation](./Visuals/top_generation.png)
 
 **Transforming**:<br>
 The only transformation of data performed was to get all of our X and y variables onto the same row of the data frame in order to facilitate modeling. This was accomplished using the *shift* method and resulted in each day having a single row with the following data points:
