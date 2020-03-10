@@ -35,6 +35,12 @@ The final data included in the is daily crude oil prices in euros, scraped from 
 **EDA & Cleaning**<br>
 Minimal cleaning of data was required with a maximum of 19 missing data points out of 35064 for any variable used for modeling. The method used to fill any missing data was *linear interpolation*. This method was chosen due to the variable, time series nature of the data and the gaps in data being small. Thus, linear interpolation allowed us to connect the previous non-missing data point and the next non-missing data point. While this is not a perfect method and likely understates the variance of the underlying data it seemed to be superior to other potential methods and overall should not have a large effect on our results since there was very little missing data.
 
+Interestingly, while the price data passed the ADfuller test for stationarity there was clear fluctations in prices & load on an hourly and daily basis,
+
+![Median Price Hourly](./Visuals/median_price_hourly.png)
+
+![Median Price Weekday](./Visuals/median_price_weekdays.png)
+
 The only transformation of data performed was to get all of our X and y variables onto the same row of the data frame in order to facilitate modeling. This was accomplished using the *shift* method and resulted in each day having a single row with the following data points:
 - The actual, hourly electric prices for the next day (our target)
 - The projected, hourly total load and wind generation for the next day (information available from the operator)
