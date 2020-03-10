@@ -34,4 +34,54 @@ Additionally, given time constraints, weather projections have not been included
 ## Modeling
 
 **Baseline & Evaluation Metrics**:<br>
-The baseline against which we compared our models was day ahead prices provided in the original data set.
+The baseline against which we compared our models was day ahead prices provided in the original data set. These prices were not particularly accurate with a correlation of 0.73 with the actual prices and the following scores on the 2 metrics we used for evaluation:
+- RMSE: €13.25
+- R-Squared: 0.13
+
+**Models Tested & Hyperparameters Tuned**
+The models tested fell broadly into 3 groups: standard regressors, vector auto regressors and neural nets. Below is a summary of the various models within each group and the hyperparameters tuned for each one (tuned parameter values in parentheses).
+
+*Standard Regressors* 
+A grouping of widely used regressors found in the sklearn library
+- Linear Regression
+  - No tuning
+- Elastic Net Regression
+  - alpha: regularization strength (0.01)
+  - l1 ratio: LASSO vs Ridge regularization (1)
+- K Nearest Neighbors Regression
+  - n neighbors: how many neighbors are considered when predicting (11)
+- Random Forest
+  - n estimators: number of trees created (100)
+  - max depth: how deep each tree can go (None)
+  - min samples leaf: fewest number of samples allowed at each leaf node (1)
+  - warm start: whether to reuse the solution to the previous call to fit and add more estimators (False)
+  - min_samples_split: minimum number of samples at a leaf to allow splitting further (2)
+- AdaBoost
+  - loss: loss function used (linear)
+  - n estimators: number of estimators (100)
+- Support Vector Regressor
+  - C: inverse regularization strength (1)
+  - kernel: kernel type used in the algorithm (linear)
+  - gamma: kernel coefficient (not used with linear kernel)
+  
+*Vector Auto Regressors*
+A family of popular regressors that use past y variables to predict new ones simultaneously. Due to difficulties in incorporating new observations in predictions it is difficult to make a 1 to 1 comparison with other model types and full evaluation of these model types is a future project. Model types that will be considered.
+- VAR
+- VARMAX (VAR model that also includes exogeneous variables)
+
+*Neural Networks*
+Three neural networks that are common in time series analysis were fit to the data. All models used dropouts to avoid overfitting and a single hidden layer after the network specific layer (i.e. convolutional layer(s) for a CNN)
+- Recurrent Neural Network (RNN)
+  - adsf
+- Convolutional Neural Network (CNN)
+  - kernel size: length of 1D convlution window (15)
+  - pool size: size of pooling window (2)
+  - dropout: % of nodes that are dropped while fitting (0.25)
+  - units: nodes in hidden layer (80)
+- Long Short Term Memory (LSTM)
+  - lstm layer size (103)
+  - units: nodes in hidden layer (80)
+  - dropout: % of nodes that are dropped while fitting (0.5)
+  
+**Evaluation Summary**
+
