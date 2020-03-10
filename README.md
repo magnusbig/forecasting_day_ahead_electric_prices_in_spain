@@ -46,9 +46,8 @@ These transformations also got rid of all of our detailed information on generat
 
 Additionally, given time constraints, weather projections have not been included in the analysis as of yet, but this is a near-term area of further iteration and improvement.
 
-**Models**
-
-*Baseline & Evaluation Metrics*
+**Models**<br>
+*Baseline & Evaluation Metrics*<br>
 The baseline against which we compared our models was day ahead prices provided in the original data set. These prices were not particularly accurate, generally underestimating the actual price, with a correlation of 0.73 with the actual prices and the following scores on the 2 metrics we used for evaluation:
 - RMSE: €13.25
 - R-Squared: 0.13
