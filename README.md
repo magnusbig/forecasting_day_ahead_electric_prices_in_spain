@@ -37,9 +37,7 @@ Minimal cleaning of data was required with a maximum of 19 missing data points o
 
 Interestingly, while the price data passed the ADfuller test for stationarity there was clear fluctations in prices & load on an hourly and daily basis,
 
-![Median Price Hourly](./Visuals/median_price_hourly.png)
-
-![Median Price Weekday](./Visuals/median_price_weekdays.png)
+![Median Price Hourly](./Visuals/median_price_hourly.png) ![Median Price Weekday](./Visuals/median_price_weekdays.png)
 
 The only transformation of data performed was to get all of our X and y variables onto the same row of the data frame in order to facilitate modeling. This was accomplished using the *shift* method and resulted in each day having a single row with the following data points:
 - The actual, hourly electric prices for the next day (our target)
