@@ -40,10 +40,10 @@ Minimal cleaning of data was required with a maximum of 19 missing data points o
 
 Plots showing the filling of missing data using linear interpolation. Note that this shows the only gap larger than 1 hour in the data and the resulting plot is quite 'believable' apart from the solar data. Additionally there were no missing data points in our variables used currently in the model, with the exception of 2 missing days of oil prices.
 
-**Before Linear Interpolation**
+*Before Linear Interpolation*
 ![Before Linear Interpolation](./Visuals/top_gen_missing.png)
 
-**After Linear Interpolation**
+*After Linear Interpolation*
 ![After Linear Interpolation](./Visuals/top_generation.png)
 
 **Transforming**:<br>
