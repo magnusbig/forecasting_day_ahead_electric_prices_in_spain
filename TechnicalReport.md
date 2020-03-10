@@ -83,5 +83,6 @@ Three neural networks that are common in time series analysis were fit to the da
   - units: nodes in hidden layer (80)
   - dropout: % of nodes that are dropped while fitting (0.5)
   
-**Evaluation Summary**
+## Evaluation
 
+**Summary Metrics**
