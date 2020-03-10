@@ -120,10 +120,22 @@ Three neural networks that are common in time series analysis were fit to the da
   
 ## Evaluation
 
-**Summary Metrics**
+**Summary Metrics**<br>
+| **Model**   | **Baseline** | **Linear Regression** | **Elastic Net** | **KNN** | **Random Forest** | **AdaBoost** | **SVR** | **VAR** | **VARMAX** | **RNN** | **CNN** | **LTSM** |
+|-------------|--------------|-----------------------|-----------------|---------|-------------------|--------------|---------|---------|------------|---------|---------|----------|
+| *Test RMSE* | €13.25       | €5.98                 | €5.94           | €7.47   | €6.89             | €7.12        | €5.86   | *TBU*   | *TBU*      | *TBU*   | €6.41   | €9.20    |
+| *Train r2*  | *NA*         | 0.844                 | 0.843           | 0.753   | 0.966             | 0.811        | 0.830   | *TBU*   | *TBU*      | *TBU*   | 0.779   | 0.501    |
+| *Test r2*   | 0.130        | 0.699                 | 0.703           | 0.543   | 0.610             | 0.579        | 0.713   | *TBU*   | *TBU*      | *TBU*   | 0.658   | 0.309    |
 
+*Note*: Metrics besides baseline are the mean value for said metrics that were originally calculated for each hour
+
+**Predictions by Hour**<br>
+One of the peculiarities of this problem is that all 24 hours of next day prices must be predicted by the same deadline. This naturally leads to an imbalance of known data for predicting and potentially less certainty when predicting the later hours vs the early hours of the day.
+
+*Plot of hourly errors*
 
 ## Production Model
 
+*TBU RNN*
 
 ## Future Work
