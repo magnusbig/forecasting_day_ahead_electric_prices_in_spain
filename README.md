@@ -44,6 +44,40 @@ These transformations also got rid of all of our detailed information on generat
 
 Additionally, given time constraints, weather projections have not been included in the analysis as of yet, but this is a near-term area of further iteration and improvement.
 
+**Models**
+
+*Baseline & Evaluation Metrics*
+The baseline against which we compared our models was day ahead prices provided in the original data set. These prices were not particularly accurate, generally underestimating the actual price, with a correlation of 0.73 with the actual prices and the following scores on the 2 metrics we used for evaluation:
+- RMSE: €13.25
+- R-Squared: 0.13
+
+*Models Tested & Hyperparameters Tuned*<br>
+The models tested fell broadly into 3 groups: standard regressors, vector auto regressors and neural nets. Below is a summary of the various models within each group.
+
+*Standard Regressors*<br>
+A grouping of widely used regressors found in the sklearn library
+- Linear Regression
+- Elastic Net Regression
+- K Nearest Neighbors Regression
+- Random Forest
+- AdaBoost
+- Support Vector Regressor
+  
+*Vector Auto Regressors*<br>
+A family of popular regressors that use past y variables to predict new ones simultaneously. Due to difficulties in incorporating new observations in predictions it is difficult to make a 1 to 1 comparison with other model types and full evaluation of these model types is a future project. Model types that will be considered.
+- VAR
+- VARMAX (VAR model that also includes exogeneous variables)
+
+*Neural Networks*<br>
+Three neural networks that are common in time series analysis were fit to the data. All models used dropouts to avoid overfitting and a single hidden layer after the network specific layer (i.e. convolutional layer(s) for a CNN)
+- Recurrent Neural Network (RNN)
+- Convolutional Neural Network (CNN)
+- Long Short Term Memory (LSTM)
+
+**Summary Evaluation**
+
+*TBU*
+
 ## Production Model
 
 *TBU*
