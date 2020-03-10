@@ -38,10 +38,10 @@ The baseline against which we compared our models was day ahead prices provided 
 - RMSE: €13.25
 - R-Squared: 0.13
 
-**Models Tested & Hyperparameters Tuned**
+**Models Tested & Hyperparameters Tuned**<br>
 The models tested fell broadly into 3 groups: standard regressors, vector auto regressors and neural nets. Below is a summary of the various models within each group and the hyperparameters tuned for each one (tuned parameter values in parentheses).
 
-*Standard Regressors* 
+*Standard Regressors*<br>
 A grouping of widely used regressors found in the sklearn library
 - Linear Regression
   - No tuning
@@ -64,12 +64,12 @@ A grouping of widely used regressors found in the sklearn library
   - kernel: kernel type used in the algorithm (linear)
   - gamma: kernel coefficient (not used with linear kernel)
   
-*Vector Auto Regressors*
+*Vector Auto Regressors*<br>
 A family of popular regressors that use past y variables to predict new ones simultaneously. Due to difficulties in incorporating new observations in predictions it is difficult to make a 1 to 1 comparison with other model types and full evaluation of these model types is a future project. Model types that will be considered.
 - VAR
 - VARMAX (VAR model that also includes exogeneous variables)
 
-*Neural Networks*
+*Neural Networks*<br>
 Three neural networks that are common in time series analysis were fit to the data. All models used dropouts to avoid overfitting and a single hidden layer after the network specific layer (i.e. convolutional layer(s) for a CNN)
 - Recurrent Neural Network (RNN)
   - adsf
