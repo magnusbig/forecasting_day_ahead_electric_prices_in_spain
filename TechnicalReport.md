@@ -60,6 +60,14 @@ Additionally, given time constraints, weather projections have not been included
 
 ## Modeling
 
+**Assumptions**<br>
+*Time Series*<br>
+The primary assumption necessary for time series models is that we are modeling a stationary process ([a stochastic process whose unconditional joint probability distribution does not change when shifted in time](https://en.wikipedia.org/wiki/Stationary_process)). I tested this assumption using an ADFuller test on our target variable of electric prices. The resultant p-value was 2.75E-15, an extremely low value was sufficient for me to reject the null hypothesis of the data not being stationary and allowed for modeling directly using price, without need for differencing or another technique to generate stationarity.
+
+*Linear Modeling Assumptions*
+
+*TBU*
+
 **Baseline & Evaluation Metrics**:<br>
 The baseline against which we compared our models was day ahead prices provided in the original data set. These prices were not particularly accurate, generally underestimating the actual price, with a correlation of 0.73 with the actual prices and the following scores on the 2 metrics we used for evaluation:
 - RMSE: €13.25
