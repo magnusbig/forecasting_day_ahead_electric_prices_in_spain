@@ -2,10 +2,12 @@
 
 ## Contents
 - [Problem Statement](#Problem-Statement)
+  - Overview of Wholesale Electric Markets
+  - Spanish Electric Market
 - [Repo Structure](#Repo-Structure)
 - [Executive Summary](#Executive-Summary)
   - Data
-  - EDA & Cleaning
+  - EDA, Cleaning & Transformation
   - Models
   - Summary Evaluation
 - [Production Model](#Production-Model)
@@ -21,6 +23,24 @@
 Predict electricity prices in Spain for each hour of the upcoming day more accurately than estimates provided by the Spanish transmission agent and operator. 
 
 Use information available during the 2pm-3pm window the previous day during which generators in Spain submit their bids.
+
+**Overview of Wholesale Electric Markets**
+
+Wholesale electric markets are highly complex, however, if we stay at high level they are fairly simple to understand. Electric markets are generally defined but some sort of geographical boundary and have 3 main agents (names can vary):
+- *Generators*: power plants, renewable plants, etc. that actually generate electricity
+- *Transmission & System Operator*: In charge of getting power from the generators to the consumers, ensuring that demand and supply match, manage the market for electricity
+- *Consumers*: anyone and everyone who consumes electricity from the grid
+
+The diagram below (from [REE](https://www.ree.es/en/about-us/business-activities/electricity-business-in-Spain)) shows this general structure.
+![Wholesale electric markets](./visuals/empressa_img4_en.png)
+
+While there are numerous financial instruments built around these wholesale markets and intraday and futures trading most also have a day ahead auction, what this project focuses on. In these auctions generators bid the price that they are willing to produce energy for and how much for at various times of the day. The system operator then selects the cheapest bids up to the point where projected demand is met and all of the generators are paid that price for electricity the next day during said time slot. While this may make it seem as though a generators bid is not important, as all generators are paid the same price, if you are the price setting generator it hurts everyone's profits to bid too low. On the flip side, bidding too high can leave one out of the market and as such accurate forecast of price are important.
+
+For more on wholesale electric markets please [publicpower.org](https://www.publicpower.org/policy/wholesale-electricity-markets-and-regional-transmission-organizations) and google to your hearts content. 
+
+**Spanish Electric Market**
+
+
 
 ## Repo Structure
 - [Code](./Code)
@@ -59,6 +79,7 @@ Interestingly, while the price data passed the ADfuller test for stationarity th
 
 ![Median Price Hourly](./Visuals/median_price_hourly.png) ![Median Price Weekday](./Visuals/median_price_weekdays.png)
 
+*Transformation*<br>
 The only transformation of data performed was to get all of our X and y variables onto the same row of the data frame in order to facilitate modeling. This was accomplished using the *shift* method and resulted in each day having a single row with the following data points:
 - The actual, hourly electric prices for the next day (our target)
 - The projected, hourly total load and wind generation for the next day (information available from the operator)
