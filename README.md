@@ -53,7 +53,7 @@ For more information on the spanish electric rules see this [link](./Research/ma
   - [Models](./Code/Models) contains saved versions of models
 - [Data](./Data) 
   - [energy-consumption-generation-prices-and-weather](./Data/energy-consumption-generation-prices-and-weather) contains data from kaggle
-  - [Crude Oil](./Data/Crude Oil) contains scraped oil price data
+  - [Crude Oil](./Data/Crude-Oil) contains scraped oil price data
   - [intermediary](./Data/intermediary) contains csv's created as part of EDA process
   - [Analysis](./Data/Analysis) contains csv's used for analysis and created post EDA
 - [Research](./Research)
@@ -129,9 +129,9 @@ Three neural networks that are common in time series analysis were fit to the da
 **Summary Metrics**<br>
 | **Model**   | **Baseline** | **Linear Regression** | **Elastic Net** | **KNN** | **Random Forest** | **AdaBoost** | **SVR** | **VAR** | **VARMAX** | **RNN** | **CNN** | **LTSM** |
 |-------------|--------------|-----------------------|-----------------|---------|-------------------|--------------|---------|---------|------------|---------|---------|----------|
-| *Test RMSE* | €13.25       | €5.98                 | €5.94           | €7.47   | €6.89             | €7.12        | €5.86   | *TBU*   | *TBU*      | *TBU*   | €6.41   | €9.20    |
-| *Train r2*  | *NA*         | 0.844                 | 0.843           | 0.753   | 0.966             | 0.811        | 0.830   | *TBU*   | *TBU*      | *TBU*   | 0.779   | 0.501    |
-| *Test r2*   | 0.130        | 0.699                 | 0.703           | 0.543   | 0.610             | 0.579        | 0.713   | *TBU*   | *TBU*      | *TBU*   | 0.658   | 0.309    |
+| *Test RMSE* | €13.25       | €5.98                 | €5.94           | €7.47   | €6.89             | €7.12        | €5.86   | €5.58   | *TBU*      | *TBU*   | €6.41   | €9.20    |
+| *Train r2*  | *NA*         | 0.844                 | 0.843           | 0.753   | 0.966             | 0.811        | 0.830   | 0.730   | *TBU*      | *TBU*   | 0.779   | 0.501    |
+| *Test r2*   | 0.130        | 0.699                 | 0.703           | 0.543   | 0.610             | 0.579        | 0.713   | *NA*   | *TBU*      | *TBU*   | 0.658   | 0.309    |
 
 *Note*: Metrics besides baseline are the mean value for said metrics that were originally calculated for each hour
 
