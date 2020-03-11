@@ -144,7 +144,7 @@ In looking at the RMSE's by hour of the day we can see that this was not the cas
 
 When we look at our, previously identified, top 4 models we can see the interesting pattern that the VAR does very well predicting the early hours of the day before it's performance tails off, while the SVR is more steady and is the best performing later in the day.
 
-![rmse by hour top models](./Visuals/rmse_top_modles.png)
+![rmse by hour top models](./Visuals/rmse_top_models.png)
 
 This leads me to feel that the SVR is probably the best standalone model, despite it's worse score than the VAR, given that it's performance is more steady throughout the day. However, given the problem not requiring a particularly fast solution with the known, daily bid deadline there is no reason that we can't combine the predictions of the VAR for the first half of the day with the SVR for the second half of the day.
 
