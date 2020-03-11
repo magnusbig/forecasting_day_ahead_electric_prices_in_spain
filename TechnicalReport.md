@@ -66,7 +66,6 @@ The primary assumption necessary for time series models is that we are modeling 
 ![energy prices](./Visuals/prices.png)
 
 *Linear Modeling Assumptions*
-
 *TBU*
 
 **Baseline & Evaluation Metrics**:<br>
@@ -103,14 +102,16 @@ A grouping of widely used regressors found in the sklearn library
   - gamma: kernel coefficient (not used with linear kernel)
   
 *Vector Auto Regressors*<br>
-A family of popular regressors that use past y variables to predict new ones simultaneously. Due to difficulties in incorporating new observations in predictions it is difficult to make a 1 to 1 comparison with other model types and full evaluation of these model types is a future project. Model types that will be considered.
+A family of popular regressors that use past y variables to predict new ones simultaneously. Due to difficulties in incorporating new observations in predictions it is difficult to make a 1 to 1 comparison with other model types, a VAR model has been fit but a VARMAX including exogenous variables is still outstanding.
 - VAR
-- VARMAX (VAR model that also includes exogeneous variables)
+  - Lags: how many time periods back we will use to predict (7)
+- VARMAX 
+  - *TBU*
 
 *Neural Networks*<br>
-Three neural networks that are common in time series analysis were fit to the data. All models used dropouts to avoid overfitting and a single hidden layer after the network specific layer (i.e. convolutional layer(s) for a CNN)
+Three neural networks that are common in time series analysis were fit to the data. All models used dropouts to avoid overfitting and a single hidden layer after the network specific layer(s) (i.e. convolutional layer(s) for a CNN)
 - Recurrent Neural Network (RNN)
-  - adsf
+  - Optimization is yet to occur due to difficulties implementing a keras TimeSeriesGenerator with a sklearn GridSearchCV
 - Convolutional Neural Network (CNN)
   - kernel size: length of 1D convlution window (15)
   - pool size: size of pooling window (2)
@@ -130,15 +131,27 @@ Three neural networks that are common in time series analysis were fit to the da
 | *Train r2*  | *NA*         | 0.844                 | 0.843           | 0.753   | 0.966             | 0.811        | 0.830   | *TBU*   | *TBU*      | *TBU*   | 0.779   | 0.501    |
 | *Test r2*   | 0.130        | 0.699                 | 0.703           | 0.543   | 0.610             | 0.579        | 0.713   | *TBU*   | *TBU*      | *TBU*   | 0.658   | 0.309    |
 
-*Note*: Metrics besides baseline are the mean value for said metrics that were originally calculated for each hour
+*Note*: Mean metrics are the mean value for said metrics that were originally calculated for each hour, metrics without *mean* in name were calculated on entire test data set.
+
+From these metrics it is clear that the best 2 models are the VAR and SVR models but for future analysis it is worth looking further into the elastic net and cnn models as they also perform well and additional features / online learning may lead them to be comparable or better than our leaders. The linear regression was near identical to the elastic net but going forward we will focus on the elastic net as it is a linear regression but with tunable regularization so including both would be overkill. While the best elastic net had very little regularization it is possible that we will perform better with more as weather and other data is added to the model.
 
 **Predictions by Hour**<br>
 One of the peculiarities of this problem is that all 24 hours of next day prices must be predicted by the same deadline. This naturally leads to an imbalance of known data for predicting and potentially less certainty when predicting the later hours vs the early hours of the day.
 
-*Plot of hourly errors TBU*
+In looking at the RMSE's by hour of the day we can see that this was not the case and on aggregate our models seemed to do a better job of predicting prices during times when electricity prices were highest.
+
+![rmse by hour](./Visuals/rmse_by_hour.png)
+
+When we look at our, previously identified, top 4 models we can see the interesting pattern that the VAR does very well predicting the early hours of the day before it's performance tails off, while the SVR is more steady and is the best performing later in the day.
+
+![rmse by hour top models](./Visuals/rmse_top_modles.png)
+
+This leads me to feel that the SVR is probably the best standalone model, despite it's worse score than the VAR, given that it's performance is more steady throughout the day. However, given the problem not requiring a particularly fast solution with the known, daily bid deadline there is no reason that we can't combine the predictions of the VAR for the first half of the day with the SVR for the second half of the day.
+
+Further, the performance of the VAR leads me to believe that the VARMAX may perform very well once it is implemented.
 
 ## Production Model
 
-*TBU RNN*
+*TBU*
 
 ## Future Work
