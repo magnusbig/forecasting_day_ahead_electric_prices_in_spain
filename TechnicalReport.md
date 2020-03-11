@@ -75,7 +75,9 @@ The baseline against which we compared our models was day ahead prices provided 
 - R-Squared: 0.13
 
 **Models & Tuning**<br>
-The models tested fell broadly into 3 groups: standard regressors, vector auto regressors and neural nets. Below is a summary of the various models within each group and the hyperparameters tuned for each one (tuned parameter values in parentheses).
+The models tested fell broadly into 3 groups: standard regressors, vector auto regressors and neural nets. For all models the 4 years of data was split into 3 years of train data and 1 year of test data and the grid searches used sklearn's TimeSeriesSplit with 4 splits to determine the best model. 
+
+Below is a summary of the various models within each group and the hyperparameters tuned for each one (tuned parameter values in parentheses).
 
 *Standard Regressors*<br>
 A grouping of widely used regressors found in the sklearn library
@@ -133,7 +135,7 @@ Three neural networks that are common in time series analysis were fit to the da
 **Predictions by Hour**<br>
 One of the peculiarities of this problem is that all 24 hours of next day prices must be predicted by the same deadline. This naturally leads to an imbalance of known data for predicting and potentially less certainty when predicting the later hours vs the early hours of the day.
 
-*Plot of hourly errors*
+*Plot of hourly errors TBU*
 
 ## Production Model
 
