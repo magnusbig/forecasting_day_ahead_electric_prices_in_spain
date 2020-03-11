@@ -24,11 +24,10 @@ Predict electricity prices in Spain for each hour of the upcoming day more accur
 
 Use information available during the 2pm-3pm window the previous day during which generators in Spain submit their bids.
 
-**Overview of Wholesale Electric Markets**
-
+**Overview of Wholesale Electric Markets**<br>
 Wholesale electric markets are highly complex, however, if we stay at high level they are fairly simple to understand. Electric markets are generally defined but some sort of geographical boundary and have 3 main agents (names can vary):
 - *Generators*: power plants, renewable plants, etc. that actually generate electricity
-- *Transmission & System Operator*: In charge of getting power from the generators to the consumers, ensuring that demand and supply match, manage the market for electricity
+- *Transmission & System Operator (TSO)*: In charge of getting power from the generators to the consumers, ensuring that demand and supply match, manage the market for electricity
 - *Consumers*: anyone and everyone who consumes electricity from the grid
 
 The diagram below (from [REE](https://www.ree.es/en/about-us/business-activities/electricity-business-in-Spain)) shows this general structure.
@@ -38,9 +37,10 @@ While there are numerous financial instruments built around these wholesale mark
 
 For more on wholesale electric markets please [publicpower.org](https://www.publicpower.org/policy/wholesale-electricity-markets-and-regional-transmission-organizations) and google to your hearts content. 
 
-**Spanish Electric Market**
+**Spanish Electric Market**<br>
+The entirety of Spain operates in a single wholesale market and the TSO is [RED Electrica de Espana](https://www.ree.es/en/about-us/business-activities/electricity-business-in-Spain). They oversee a daily auction which concludes at 3pm local time and receive bids for all 24 hours of the next day. This daily auction is the basis for the project, with the goal being to predict electric prices with greater accuracy than the RED provided forecasts.
 
-
+For more information on the spanish electric rules see this [link](./Research/market_rules_2019_non-binding_translation.pdf).
 
 ## Repo Structure
 - [Code](./Code)
@@ -78,6 +78,10 @@ Minimal cleaning of data was required with a maximum of 19 missing data points o
 Interestingly, while the price data passed the ADfuller test for stationarity there was clear fluctations in prices & load on an hourly and daily basis. Weekends and late at night / early morning showed the lowest load and prices, with an interesting dip in the early afternoon that seems to correlate to the spanish siesta. Further the variation in median prices was much larger when looking hourly that daily.
 
 ![Median Price Hourly](./Visuals/median_price_hourly.png) ![Median Price Weekday](./Visuals/median_price_weekdays.png)
+
+We can see this correlation even more clearly when we look at an autocorrelation chart, which shows the correlation between prices and their past selves. The chart clearly shows that the correlation is highest at 24 hour (i.e. one day) intervals and that going back a full week provides higher correlation than 2-6 days.
+
+![Auto Correlation](./Visuals/autocorrelation_last_week.png)
 
 *Transformation*<br>
 The only transformation of data performed was to get all of our X and y variables onto the same row of the data frame in order to facilitate modeling. This was accomplished using the *shift* method and resulted in each day having a single row with the following data points:
