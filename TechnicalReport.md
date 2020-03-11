@@ -9,8 +9,7 @@ Details the technical approach taken for the project including:
 - [Modeling](#Modeling)
   - Assumptions
   - Baseline
-  - Model Types
-  - Tuning
+  - Models & Tuning
   - Evaluation Metrics
 - [Summary Metrics](#Summary-Metrics)
   - Evaluation Statistics
@@ -75,7 +74,7 @@ The baseline against which we compared our models was day ahead prices provided 
 - RMSE: €13.25
 - R-Squared: 0.13
 
-**Models Tested & Hyperparameters Tuned**<br>
+**Models & Tuning**<br>
 The models tested fell broadly into 3 groups: standard regressors, vector auto regressors and neural nets. Below is a summary of the various models within each group and the hyperparameters tuned for each one (tuned parameter values in parentheses).
 
 *Standard Regressors*<br>
