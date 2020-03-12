@@ -65,8 +65,26 @@ The primary assumption necessary for time series models is that we are modeling 
 
 ![energy prices](./Visuals/prices.png)
 
-*Linear Modeling Assumptions*
-*TBU*
+*Linear Modeling Assumptions*<br>
+For our linear models there are 5 assumptions that we need to fulfill in order to use a linear model. In this instance we were able to do so (descriptions of assumptions taken from General Assembly lesson):<br>
+1. **Linearity:** $Y$ must have an approximately linear relationship with $X$.<br>
+![lin](./Visuals/target_heatmap.png)
+Looking at the heatmap of our x-variables (note that this is pre-transformation) vs the target we can see that while there are no perfect linear relationships we have correlation between features and the target. 
+
+2. **Independence of Errors:** Errors (residuals) $\varepsilon_i$ and $\varepsilon_j$ must be independent of one another for any $i \ne j$.<br>
+![ind of errors](./Visuals/e_net_error_scatter.png)
+As you can see in the scatter plot of our elastic net errors, while, there are a couple periods that seem to have larger errors we can reasonably state independence of errors.
+
+3. **Normality:** The errors (residuals) follow a Normal distribution with mean 0.<br>
+![error hist](./Visuals/e_net_error_hist.png)
+Looking at the distplot of errors for the elastic net we can see a normal distribution with mean of 0.
+
+4. **Equality of Variances**: The errors (residuals) should have a roughly consistent pattern, regardless of the value of the $X$ variables. (There should be no discernable relationship between the $X$ variable and the residuals.)<br>
+We feel confident that this is true.
+
+5. **Independence of Predictors:** The independent variables $X_i$ and $X_j$ must be independent of one another for any $i \ne j$.<br>
+This is never completely true but is true enough for the purposes of this problem.
+
 
 **Baseline & Evaluation Metrics**:<br>
 The baseline against which we compared our models was day ahead prices provided in the original data set. These prices were not particularly accurate, generally underestimating the actual price, with a correlation of 0.73 with the actual prices and the following scores on the 2 metrics we used for evaluation:
