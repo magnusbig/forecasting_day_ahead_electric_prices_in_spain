@@ -153,8 +153,8 @@ Three neural networks that are common in time series analysis were fit to the da
 **Summary Metrics**<br>
 | **Model**        | **Baseline** | **Linear Regression** | **Elastic Net** | **KNN** | **Random Forest** | **AdaBoost** | **SVR** | **VAR** | **VARMAX** | **RNN** | **CNN** | **LTSM** |
 |------------------|--------------|-----------------------|-----------------|---------|-------------------|--------------|---------|---------|------------|---------|---------|----------|
-| *Full Test RMSE* | €13.25       | €5.99                 | €5.96           | €7.50   | €6.94             | €7.16        | €5.87   | €5.49   | *TBU*      | *TBU*   | €6.43   | €9.25    |
-| *Full Test r2*   | 0.130        | 0.759                 | 0.762           | 0.623   | 0.677             | 0.657        | 0.769   | 0.798   | *TBU*      | *TBU*   | 0.723   | 0.427    |
+| *Full Test RMSE* | €13.25       | €5.99                 | €5.96           | €7.50   | €6.94             | €7.16        | €5.87   | €5.65   | *TBU*      | *TBU*   | €6.43   | €9.25    |
+| *Full Test r2*   | 0.130        | 0.759                 | 0.762           | 0.623   | 0.677             | 0.657        | 0.769   | 0.786   | *TBU*      | *TBU*   | 0.723   | 0.427    |
 | *Mean Test RMSE* | *NA*         | €5.98                 | €5.94           | €7.47   | €6.89             | €7.12        | €5.86   | €5.58   | *TBU*      | €7.81   | €6.41   | €9.20    |
 | *Mean Train r2*  | *NA*         | 0.844                 | 0.843           | 0.753   | 0.966             | 0.811        | 0.830   | *NA*    | *TBU*      | 0.857   | 0.779   | 0.501    |
 | *Mean Test r2*   | *NA*         | 0.699                 | 0.703           | 0.543   | 0.610             | 0.579        | 0.713   | 0.730   | *TBU*      | 0.457   | 0.658   | 0.309    |
@@ -184,7 +184,10 @@ The project is currently ongoing and none of the models so far perform at high e
 
 By combining the predictions from the VAR for the first 12 hours of the day, when it performs best, and the SVR for the last 12 hours of the day we are able to get a clear boost in performance, as seen below:
 
-*Table showing RMSE, R-2*
+| **Model**          | **Baseline** | **SVR** | **VAR** | **VAR-SVR** |
+|--------------------|--------------|---------|---------|-------------|
+| **Full Test RMSE** | €13.25       | €5.87   | €5.65   | €5.49       |
+| **Full Test r2**   | 0.130        | 0.769   | 0.786   | 0.798       |
 
 However, we are still off by a huge amount at times as seen by the distribution of errors and in order to have a truly usable model for this application further refinement will be needed.
 
