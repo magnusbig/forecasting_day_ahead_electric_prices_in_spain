@@ -10,13 +10,8 @@
   - EDA, Cleaning & Transformation
   - Models
   - Summary Evaluation
-- [Production Model](#Production-Model)
-  - Model Discussion
-  - Performance
+- [Current Best Model](#Current-Best-Model)
 - [Future Work](#Future-Work)
-  - Features to add
-  - Online Learning
-  - App / Web display
   
 ## Problem Statement
 
@@ -126,18 +121,58 @@ Three neural networks that are common in time series analysis were fit to the da
 **Summary Evaluation**
 
 **Summary Metrics**<br>
-| **Model**   | **Baseline** | **Linear Regression** | **Elastic Net** | **KNN** | **Random Forest** | **AdaBoost** | **SVR** | **VAR** | **VARMAX** | **RNN** | **CNN** | **LTSM** |
-|-------------|--------------|-----------------------|-----------------|---------|-------------------|--------------|---------|---------|------------|---------|---------|----------|
-| *Test RMSE* | €13.25       | €5.98                 | €5.94           | €7.47   | €6.89             | €7.12        | €5.86   | €5.58   | *TBU*      | €7.81   | €6.41   | €9.20    |
-| *Train r2*  | *NA*         | 0.844                 | 0.843           | 0.753   | 0.966             | 0.811        | 0.830   | *NA*  | *TBU*      | 0.857   | 0.779   | 0.501    |
-| *Test r2*   | 0.130        | 0.699                 | 0.703           | 0.543   | 0.610             | 0.579        | 0.713   | 0.730  | *TBU*      | 0.457   | 0.658   | 0.309    |
+| **Model**        | **Baseline** | **Linear Regression** | **Elastic Net** | **KNN** | **Random Forest** | **AdaBoost** | **SVR** | **VAR** | **VARMAX** | **RNN** | **CNN** | **LTSM** |
+|------------------|--------------|-----------------------|-----------------|---------|-------------------|--------------|---------|---------|------------|---------|---------|----------|
+| *Test RMSE* | €13.25       | €5.99                 | €5.96           | €7.50   | €6.94             | €7.16        | €5.87   | €5.65   | *TBU*      | *TBU*   | €6.43   | €9.25    |
+| *Test r2*   | 0.130        | 0.759                 | 0.762           | 0.623   | 0.677             | 0.657        | 0.769   | 0.786   | *TBU*      | *TBU*   | 0.723   | 0.427    |
 
-*Note*: Metrics besides baseline are the mean value for said metrics that were originally calculated for each hour
+From these metrics it is clear that the best 2 models are the VAR and SVR models but for future analysis it is worth looking further into the elastic net and cnn models as they also perform well and additional features / online learning may lead them to be comparable or better than our leaders. The linear regression was near identical to the elastic net but going forward we will focus on the elastic net as it is a linear regression but with tunable regularization so including both would be overkill. While the best elastic net had very little regularization it is possible that we will perform better with more as weather and other data is added to the model.
 
-## Production Model
+**Predictions by Hour**<br>
+One of the peculiarities of this problem is that all 24 hours of next day prices must be predicted by the same deadline. This naturally leads to an imbalance of known data for predicting and potentially less certainty when predicting the later hours vs the early hours of the day.
 
-*TBU*
+In looking at the RMSE's by hour of the day we can see that this was not the case and on aggregate our models seemed to do a better job of predicting prices during times when electricity prices were highest.
+
+![rmse by hour](./Visuals/rmse_by_hour.png)
+
+When we look at our, previously identified, top 4 models we can see the interesting pattern that the VAR does very well predicting the early hours of the day before it's performance tails off, while the SVR is more steady and is the best performing later in the day.
+
+![rmse by hour top models](./Visuals/rmse_top_models.png)
+
+This leads me to feel that the SVR is probably the best standalone model, despite it's worse score than the VAR, given that it's performance is more steady throughout the day. However, given the problem not requiring a particularly fast solution with the known, daily bid deadline there is no reason that we can't combine the predictions of the VAR for the first half of the day with the SVR for the second half of the day.
+
+Further, the performance of the VAR leads me to believe that the VARMAX may perform very well once it is implemented.
+
+## Current Best Model
+
+The project is currently ongoing and none of the models so far perform at high enough level that I would call them production models. However, as the project currently stands our best model is a combination of the VAR and SVR models.  
+
+By combining the predictions from the VAR for the first 12 hours of the day, when it performs best, and the SVR for the last 12 hours of the day we are able to get a clear boost in performance, as seen below:
+
+| **Model**          | **Baseline** | **SVR** | **VAR** | **VAR-SVR** |
+|--------------------|--------------|---------|---------|-------------|
+| **Full Test RMSE** | €13.25       | €5.87   | €5.65   | €5.49       |
+| **Full Test r2**   | 0.130        | 0.769   | 0.786   | 0.798       |
+
+However, we are still off by a huge amount at times as seen by the distribution of errors and in order to have a truly usable model for this application further refinement will be needed.
+
+![var-svr-errors](./Visuals/var_svr_errors.png)
 
 ## Future Work
 
-*TBU*
+There are numerous areas for future improvements to the models and project as a whole. These areas for improvement can be broadly broken down into 5 areas:
+- Continued research
+  - I am certainly not an expert on electric grids and factors for pricing, continued research into grids and modeling techniques will help improve predictions and analysis
+- Model & feature improvements
+  - Incorporate weather data & predictions
+  - More information on fuel prices, futures contract pricing
+  - Incorporate connected grids (Spain's grid is connected to all neighboring countries and more broadly through Europe)
+  - Continued iteration and testing of hyperparameters for top models
+- Online learning
+  - Incorporate process so that the models are constantly learning from new data not just making predictions
+  - Develop signal for when model performance slips
+- Production code & app / website
+  - Transform code from static jupyter notebooks to production code that can directly take information from APIs and other feeds to generate predictions
+  - Show predictions in real time
+- Real-time, medium-term and long-term forecasting
+  - The current scope of the problem is centered around day ahead auctions but this is far from the only scenario in which electric price forecasting is useful
