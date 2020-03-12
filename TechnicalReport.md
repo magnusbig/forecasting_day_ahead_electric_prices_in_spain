@@ -67,11 +67,11 @@ The primary assumption necessary for time series models is that we are modeling 
 
 *Linear Modeling Assumptions*<br>
 For our linear models there are 5 assumptions that we need to fulfill in order to use a linear model. In this instance we were able to do so (descriptions of assumptions taken from General Assembly lesson):<br>
-1. **Linearity:** $Y$ must have an approximately linear relationship with $X$.<br>
+1. **Linearity:** Y must have an approximately linear relationship with X.<br>
 ![lin](./Visuals/target_heatmap.png)<br>
 Looking at the heatmap of our x-variables (note that this is pre-transformation) vs the target we can see that while there are no perfect linear relationships we have correlation between features and the target. 
 
-2. **Independence of Errors:** Errors (residuals) $\varepsilon_i$ and $\varepsilon_j$ must be independent of one another for any $i \ne j$.<br>
+2. **Independence of Errors:** Errors (residuals)must be independent of one another.<br>
 ![ind of errors](./Visuals/e_net_error_scatter.png)<br>
 As you can see in the scatter plot of our elastic net errors, while, there are a couple periods that seem to have larger errors we can reasonably state independence of errors.
 
@@ -82,7 +82,7 @@ Looking at the distplot of errors for the elastic net we can see a normal distri
 4. **Equality of Variances**: The errors (residuals) should have a roughly consistent pattern, regardless of the value of the $X$ variables. (There should be no discernable relationship between the $X$ variable and the residuals.)<br>
 We feel confident that this is true.
 
-5. **Independence of Predictors:** The independent variables $X_i$ and $X_j$ must be independent of one another for any $i \ne j$.<br>
+5. **Independence of Predictors:** The independent variables must be independent of one another.<br>
 This is never completely true but is true enough for the purposes of this problem.
 
 
