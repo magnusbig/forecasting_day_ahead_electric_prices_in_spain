@@ -16,8 +16,6 @@ Details the technical approach taken for the project including:
   - Evaluation Statistics
   - Predictions by Hour
 - [Current Best Model](#Current-Best-Model)
-  - Model Discussion
-  - Performance
 - [Future Work](#Future-Work)
 
 ## Problem Statement
