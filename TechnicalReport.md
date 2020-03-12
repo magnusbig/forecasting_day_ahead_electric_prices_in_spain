@@ -14,7 +14,7 @@ Details the technical approach taken for the project including:
 - [Summary Metrics](#Summary-Metrics)
   - Evaluation Statistics
   - Predictions by Hour
-- [Production Model](#Production-Model)
+- [Current Best Model](#Current-Best-Model)
   - Model Discussion
   - Performance
 - [Future Work](#Future-Work)
@@ -24,6 +24,24 @@ Details the technical approach taken for the project including:
 Predict electricity prices in Spain for each hour of the upcoming day more accurately than estimates provided by the Spanish transmission agent and operator. 
 
 Use information available during the 2pm-3pm window the previous day during which generators in Spain submit their bids. 
+
+**Overview of Wholesale Electric Markets**<br>
+Wholesale electric markets are highly complex, however, if we stay at high level they are fairly simple to understand. Electric markets are generally defined but some sort of geographical boundary and have 3 main agents (names can vary):
+- *Generators*: power plants, renewable plants, etc. that actually generate electricity
+- *Transmission & System Operator (TSO)*: In charge of getting power from the generators to the consumers, ensuring that demand and supply match, manage the market for electricity
+- *Consumers*: anyone and everyone who consumes electricity from the grid
+
+The diagram below (from [RED Electrica de Espana](https://www.ree.es/en/about-us/business-activities/electricity-business-in-Spain)) shows this general structure.
+![Wholesale electric markets](./Visuals/empresa_img4_en.png)
+
+While there are numerous financial instruments built around these wholesale markets and intraday and futures trading most also have a day ahead auction, what this project focuses on. In these auctions generators bid the price that they are willing to produce energy for and how much for at various times of the day. The system operator then selects the cheapest bids up to the point where projected demand is met and all of the generators are paid that price for electricity the next day during said time slot. While this may make it seem as though a generators bid is not important, as all generators are paid the same price, if you are the price setting generator it hurts everyone's profits to bid too low. On the flip side, bidding too high can leave one out of the market and as such accurate forecast of price are important.
+
+For more on wholesale electric markets please [publicpower.org](https://www.publicpower.org/policy/wholesale-electricity-markets-and-regional-transmission-organizations) and google to your hearts content. 
+
+**Spanish Electric Market**<br>
+The entirety of Spain operates in a single wholesale market and the TSO is [RED Electrica de Espana](https://www.ree.es/en/about-us/business-activities/electricity-business-in-Spain). They oversee a daily auction which concludes at 3pm local time and receive bids for all 24 hours of the next day. This daily auction is the basis for the project, with the goal being to predict electric prices with greater accuracy than the RED provided forecasts.
+
+For more information on the spanish electric rules see this [link](./Research/market_rules_2019_non-binding_translation.pdf).
 
 ## Cleaning & Transforming Data
 
@@ -168,8 +186,35 @@ This leads me to feel that the SVR is probably the best standalone model, despit
 
 Further, the performance of the VAR leads me to believe that the VARMAX may perform very well once it is implemented.
 
-## Production Model
+## Current Best Model
 
-*TBU*
+The project is currently ongoing and none of the models so far perform at high enough level that I would call them production models. However, as the project currently stands our best model is a combination of the VAR and SVR models.  
+
+By combining the predictions from the VAR for the first 12 hours of the day, when it performs best, and the SVR for the last 12 hours of the day we are able to get a clear boost in performance, as seen below:
+
+*Table showing RMSE, R-2*
+
+However, we are still off by a huge amount at times as seen by the distribution of errors and in order to have a truly usable model for this application further refinement will be needed.
+
+![var-svr-errors](./Visuals/var_svr_errors.png)
 
 ## Future Work
+
+There are numerous areas for future improvements to the models and project as a whole. These areas for improvement can be broadly broken down into 5 areas:
+- Continued research
+  - I am certainly not an expert on electric grids and factors for pricing, continued research into grids and modeling techniques will help improve predictions and analysis
+- Model & feature improvements
+  - Incorporate weather data & predictions
+  - More information on fuel prices, futures contract pricing
+  - Incorporate connected grids (Spain's grid is connected to all neighboring countries and more broadly through Europe)
+  - Continued iteration and testing of hyperparameters for top models
+- Online learning
+  - Incorporate process so that the models are constantly learning from new data not just making predictions
+  - Develop signal for when model performance slips
+- Production code & app / website
+  - Transform code from static jupyter notebooks to production code that can directly take information from APIs and other feeds to generate predictions
+  - Show predictions in real time
+- Real-time, medium-term and long-term forecasting
+  - The current scope of the problem is centered around day ahead auctions but this is far from the only scenario in which electric price forecasting is useful
+  
+If anyone has actually read this far please let me know of any comments of suggestions!
