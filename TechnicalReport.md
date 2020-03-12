@@ -2,6 +2,7 @@
 
 Details the technical approach taken for the project including:
 - [Problem Statement](#Problem-Statement)
+  - Mechanics of Spanish Day Ahead Auctions
 - [Cleaning & Transforming Data](#Cleaning-&-Transforming-Data)
   - Data Sources & Summary
   - Cleaning
@@ -25,21 +26,10 @@ Predict electricity prices in Spain for each hour of the upcoming day more accur
 
 Use information available during the 2pm-3pm window the previous day during which generators in Spain submit their bids. 
 
-**Overview of Wholesale Electric Markets**<br>
-Wholesale electric markets are highly complex, however, if we stay at high level they are fairly simple to understand. Electric markets are generally defined but some sort of geographical boundary and have 3 main agents (names can vary):
-- *Generators*: power plants, renewable plants, etc. that actually generate electricity
-- *Transmission & System Operator (TSO)*: In charge of getting power from the generators to the consumers, ensuring that demand and supply match, manage the market for electricity
-- *Consumers*: anyone and everyone who consumes electricity from the grid
+**Mechanics of Spanish Day Ahead Acutions**<br>
+The entirety of Spain operates in a single wholesale market and the TSO is [RED Electrica de Espana](https://www.ree.es/en/about-us/business-activities/electricity-business-in-Spain). 
 
-The diagram below (from [RED Electrica de Espana](https://www.ree.es/en/about-us/business-activities/electricity-business-in-Spain)) shows this general structure.
-![Wholesale electric markets](./Visuals/empresa_img4_en.png)
-
-While there are numerous financial instruments built around these wholesale markets and intraday and futures trading most also have a day ahead auction, what this project focuses on. In these auctions generators bid the price that they are willing to produce energy for and how much for at various times of the day. The system operator then selects the cheapest bids up to the point where projected demand is met and all of the generators are paid that price for electricity the next day during said time slot. While this may make it seem as though a generators bid is not important, as all generators are paid the same price, if you are the price setting generator it hurts everyone's profits to bid too low. On the flip side, bidding too high can leave one out of the market and as such accurate forecast of price are important.
-
-For more on wholesale electric markets please [publicpower.org](https://www.publicpower.org/policy/wholesale-electricity-markets-and-regional-transmission-organizations) and google to your hearts content. 
-
-**Spanish Electric Market**<br>
-The entirety of Spain operates in a single wholesale market and the TSO is [RED Electrica de Espana](https://www.ree.es/en/about-us/business-activities/electricity-business-in-Spain). They oversee a daily auction which concludes at 3pm local time and receive bids for all 24 hours of the next day. This daily auction is the basis for the project, with the goal being to predict electric prices with greater accuracy than the RED provided forecasts.
+They oversee a daily auction which concludes at 3pm local time and receive bids (electric generator declares how much power they will generate and at what price) for all 24 hours of the next day. 
 
 For more information on the spanish electric rules see this [link](./Research/market_rules_2019_non-binding_translation.pdf).
 
