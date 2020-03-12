@@ -157,7 +157,8 @@ Three neural networks that are common in time series analysis were fit to the da
 | *Full Test r2*   | 0.130        | 0.759                 | 0.762           | 0.623   | 0.677             | 0.657        | 0.769   | 0.798   | *TBU*      | *TBU*   | 0.723   | 0.427    |
 | *Mean Test RMSE* | *NA*         | €5.98                 | €5.94           | €7.47   | €6.89             | €7.12        | €5.86   | €5.58   | *TBU*      | €7.81   | €6.41   | €9.20    |
 | *Mean Train r2*  | *NA*         | 0.844                 | 0.843           | 0.753   | 0.966             | 0.811        | 0.830   | *NA*    | *TBU*      | 0.857   | 0.779   | 0.501    |
-| *Mean Test r2*   | *NA*         | 0.699                 | 0.703           | 0.543   | 0.610             | 0.579        | 0.713   | 0.730   | *TBU*      | 0.457   | 0.658   | 0.309    |<br>
+| *Mean Test r2*   | *NA*         | 0.699                 | 0.703           | 0.543   | 0.610             | 0.579        | 0.713   | 0.730   | *TBU*      | 0.457   | 0.658   | 0.309    |
+
 *Note*: Mean metrics are the mean value for said metrics that were originally calculated for each hour, metrics without *mean* in name were calculated on entire test data set.
 
 From these metrics it is clear that the best 2 models are the VAR and SVR models but for future analysis it is worth looking further into the elastic net and cnn models as they also perform well and additional features / online learning may lead them to be comparable or better than our leaders. The linear regression was near identical to the elastic net but going forward we will focus on the elastic net as it is a linear regression but with tunable regularization so including both would be overkill. While the best elastic net had very little regularization it is possible that we will perform better with more as weather and other data is added to the model.
