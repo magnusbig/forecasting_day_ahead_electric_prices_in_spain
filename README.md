@@ -30,7 +30,7 @@ Wholesale electric markets are highly complex, however, if we stay at high level
 - *Transmission & System Operator (TSO)*: In charge of getting power from the generators to the consumers, ensuring that demand and supply match, manage the market for electricity
 - *Consumers*: anyone and everyone who consumes electricity from the grid
 
-The diagram below (from [REE](https://www.ree.es/en/about-us/business-activities/electricity-business-in-Spain)) shows this general structure.
+The diagram below (from [RED Electrica de Espana](https://www.ree.es/en/about-us/business-activities/electricity-business-in-Spain)) shows this general structure.
 ![Wholesale electric markets](./Visuals/empresa_img4_en.png)
 
 While there are numerous financial instruments built around these wholesale markets and intraday and futures trading most also have a day ahead auction, what this project focuses on. In these auctions generators bid the price that they are willing to produce energy for and how much for at various times of the day. The system operator then selects the cheapest bids up to the point where projected demand is met and all of the generators are paid that price for electricity the next day during said time slot. While this may make it seem as though a generators bid is not important, as all generators are paid the same price, if you are the price setting generator it hurts everyone's profits to bid too low. On the flip side, bidding too high can leave one out of the market and as such accurate forecast of price are important.
