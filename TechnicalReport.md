@@ -79,7 +79,7 @@ As you can see in the scatter plot of our elastic net errors, while, there are a
 ![error hist](./Visuals/e_net_error_hist.png)<br>
 Looking at the distplot of errors for the elastic net we can see a normal distribution with mean of 0.
 
-4. **Equality of Variances**: The errors (residuals) should have a roughly consistent pattern, regardless of the value of the $X$ variables. (There should be no discernable relationship between the $X$ variable and the residuals.)<br>
+4. **Equality of Variances**: The errors (residuals) should have a roughly consistent pattern, regardless of the value of the X variables.<br>
 We feel confident that this is true.
 
 5. **Independence of Predictors:** The independent variables must be independent of one another.<br>
