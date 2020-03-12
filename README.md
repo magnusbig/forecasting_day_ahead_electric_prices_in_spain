@@ -49,7 +49,6 @@ For more information on the spanish electric rules see this [link](./Research/ma
     - 1x_xxx Combining results of EDA and feature engineering
     - 2x_xxx Modeling
     - 3x_xxx Evaluating models
-    - 4x_xxx In depth look at production model
   - [Models](./Code/Models) contains saved versions of models
 - [Data](./Data) 
   - [energy-consumption-generation-prices-and-weather](./Data/energy-consumption-generation-prices-and-weather) contains data from kaggle
