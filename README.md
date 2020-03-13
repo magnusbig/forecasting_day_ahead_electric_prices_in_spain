@@ -1,5 +1,7 @@
 # Forecasting Day Ahead Electric Prices in Spain - Ongoing
 
+**Acknowledgment:** This project was inspired by and the data was largely provided by [Nicholas Jhana](https://www.kaggle.com/nicholasjhana/energy-consumption-generation-prices-and-weather)
+
 ## Contents
 - [Problem Statement](#Problem-Statement)
   - Overview of Wholesale Electric Markets
@@ -19,11 +21,11 @@ Predict electricity prices in Spain for each hour of the upcoming day more accur
 
 Use information available during the 2pm-3pm window the previous day during which generators in Spain submit their bids.
 
-**Overview of Wholesale Electric Markets**<br>
-Wholesale electric markets are highly complex, however, if we stay at high level they are fairly simple to understand. Electric markets are generally defined but some sort of geographical boundary and have 3 main agents (names can vary):
+**Overview of  Electric Markets**<br>
+Electric markets are highly complex, however, if we stay at high level they are fairly simple to understand. Electric markets are generally defined but some sort of geographical boundary and have 3 main agents (names can vary):
 - *Generators*: power plants, renewable plants, etc. that actually generate electricity
 - *Transmission & System Operator (TSO)*: In charge of getting power from the generators to the consumers, ensuring that demand and supply match, manage the market for electricity
-- *Consumers*: anyone and everyone who consumes electricity from the grid
+- *Consumers*: anyone and everyone who consumes electricity from the grid 
 
 The diagram below (from [RED Electrica de Espana](https://www.ree.es/en/about-us/business-activities/electricity-business-in-Spain)) shows this general structure.
 ![Wholesale electric markets](./Visuals/empresa_img4_en.png)
